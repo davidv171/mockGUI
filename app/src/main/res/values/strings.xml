@@ -8,4 +8,7 @@
     <string name="clean">Clean!</string>
     <string name="doing_nothing">Doing nothing</string>
     <string name="todo">TODO</string>
+    <string name="title_activity_favorite_apps">favoriteApps</string>
+    <string name="title_activity_apps">Apps</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
