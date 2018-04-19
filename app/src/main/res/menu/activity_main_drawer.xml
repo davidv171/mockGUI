@@ -2,35 +2,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
+    <item android:title="Cloud">
+        <menu>
+            <item
+                android:id="@+id/nav_camera"
+                android:icon="@drawable/ic_backup_black_24dp"
+                android:title="Backup" />
+            <item
+                android:id="@+id/nav_download"
+                android:icon="@drawable/ic_cloud_download_black_24dp"
+                android:title="Download"
+                />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
 
+                />
+        </menu>
+    </item>
+    <item android:title="Navigation">
+        <menu>
+            <item android:id="@+id/nav_app_list"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title="Favorite apps"/>
+        </menu>
+    </item>
     <item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_share_black_24dp"
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_send_black_24dp"
+
                 android:title="Send" />
         </menu>
     </item>
