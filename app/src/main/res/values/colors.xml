@@ -7,4 +7,6 @@
     <color name="red">#ff0000</color>
     <color name="blue">#0000ff</color>
     <color name="complete">#32CD32</color>
+    <color name="tabsScrollColor">#8a140e</color>
+    <color name="white">#FFFF</color>
 </resources>

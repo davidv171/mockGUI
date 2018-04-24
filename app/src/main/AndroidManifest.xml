@@ -23,7 +23,12 @@
         <activity
             android:name=".Apps"
             android:label="@string/title_activity_apps"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="davidv7.avastgui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
