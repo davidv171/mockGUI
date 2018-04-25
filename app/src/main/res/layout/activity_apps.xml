@@ -59,12 +59,17 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.linroid.filtermenu.library.FilterMenuLayout
+        android:id="@+id/filter_menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_filter_list_black_24dp" />
+        android:layout_height="match_parent"
+        android:elevation="8dp"
+        app:fm_expandedRadius="128dp"
+        app:fm_collapsedRadius="24dp"
+        app:fm_centerBottom="50dp"
+        app:fm_centerRight="20dp"
+        app:fm_primaryColor="#ff0000"
+        app:fm_primaryDarkColor="#8b0000">
+    </com.linroid.filtermenu.library.FilterMenuLayout>
 
 </android.support.design.widget.CoordinatorLayout>

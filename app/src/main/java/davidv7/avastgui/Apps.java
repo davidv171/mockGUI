@@ -1,21 +1,28 @@
 package davidv7.avastgui;
 
+import android.app.SearchManager;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.linroid.filtermenu.library.FilterMenu;
+import com.linroid.filtermenu.library.FilterMenuLayout;
 
 public class Apps extends AppCompatActivity {
 
@@ -39,7 +46,7 @@ public class Apps extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apps);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
@@ -49,24 +56,32 @@ public class Apps extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.red));
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        FilterMenuLayout layout = (FilterMenuLayout) findViewById(R.id.filter_menu);
+        FilterMenu menu = new FilterMenu.Builder(this).addItem(R.drawable.ic_alphabet).addItem(R.drawable.ic_reverse_alphabet).addItem(R.drawable.ic_clear_all_white_24dp).addItem(R.drawable.ic_arrow_white_24dp)
+        //.inflate(R.menu....)//inflate  menu resource
+    .attach(layout)
+                .withListener(new FilterMenu.OnMenuChangeListener() {
+                    @Override
+                    public void onMenuItemClick(View view, int position) {
+                    }
+                    @Override
+                    public void onMenuCollapse() {
+                    }
+                    @Override
+                    public void onMenuExpand() {
+                    }
+                })
+                .build();
 
     }
 
@@ -75,6 +90,24 @@ public class Apps extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_apps, menu);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        editText.setTextColor(Color.WHITE);
+        searchView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view) {
+                Toolbar toolbar = findViewById(R.id.toolbar);
+                toolbar.setBackgroundColor(Color.TRANSPARENT);
+                System.out.println("YES!");
+            }
+        });
         return true;
     }
 
@@ -87,6 +120,11 @@ public class Apps extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
+            //change color of action bar to light blue
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.setBackgroundColor(Color.parseColor("#ff0000"));
+            TransitionManager.beginDelayedTransition((ViewGroup) Apps.this.findViewById(R.id.toolbar));
+            MenuItemCompat.expandActionView(item);
             return true;
         }
 
