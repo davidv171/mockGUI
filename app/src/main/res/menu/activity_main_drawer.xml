@@ -21,7 +21,12 @@
             <item android:id="@+id/nav_app_list"
                 android:icon="@drawable/ic_star_black_24dp"
                 android:title="Favorite apps"/>
+            <item android:id="@+id/nav_storage"
+                android:icon="@drawable/ic_storage_black_24dp"
+                android:title="Storage"/>
         </menu>
+
+
     </item>
     <item android:title="Communicate">
         <menu>

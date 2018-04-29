@@ -223,6 +223,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this,Apps.class);
             startActivity(intent);
         }
+        if (id == R.id.nav_storage) {
+            Intent intent = new Intent(MainActivity.this,Storage.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer =findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

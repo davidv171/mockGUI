@@ -29,6 +29,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="davidv7.avastgui.MainActivity" />
         </activity>
+        <activity
+            android:name=".Storage"
+            android:label="@string/title_activity_storage"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="davidv7.avastgui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -125,6 +125,7 @@ public class Apps extends AppCompatActivity {
             toolbar.setBackgroundColor(Color.parseColor("#ff0000"));
             TransitionManager.beginDelayedTransition((ViewGroup) Apps.this.findViewById(R.id.toolbar));
             MenuItemCompat.expandActionView(item);
+
             return true;
         }
 
@@ -162,6 +163,8 @@ public class Apps extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_apps2, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            //TODO: Make a recycler view with apps, or hardcode a few
+
             return rootView;
         }
     }
