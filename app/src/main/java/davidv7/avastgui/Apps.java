@@ -67,7 +67,7 @@ public class Apps extends AppCompatActivity {
 
 
         FilterMenuLayout layout = (FilterMenuLayout) findViewById(R.id.filter_menu);
-        FilterMenu menu = new FilterMenu.Builder(this).addItem(R.drawable.ic_alphabet).addItem(R.drawable.ic_reverse_alphabet).addItem(R.drawable.ic_clear_all_white_24dp).addItem(R.drawable.ic_arrow_white_24dp)
+        FilterMenu menu = new FilterMenu.Builder(this).addItem(R.drawable.ic_alphabet).addItem(R.drawable.ic_reverse_alphabet)
         //.inflate(R.menu....)//inflate  menu resource
     .attach(layout)
                 .withListener(new FilterMenu.OnMenuChangeListener() {
