@@ -60,83 +60,74 @@
                 app:layout_constraintTop_toTopOf="@+id/progressText1"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="327dp"
+                android:layout_height="169dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/grid_border"
                 android:layout_marginTop="32dp"
+                android:background="@drawable/grid_border"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressText2">
 
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="17"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginEnd="32dp"
+                <ImageView
+                    android:id="@+id/cpu"
+                    android:layout_width="66dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_row="0"
-                    android:drawableTop="@drawable/camera_layer"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_cpu" />
 
-                    android:text="TextView" />
+                <ImageView
+                    android:id="@+id/ram"
+                    android:layout_width="66dp"
+                    android:layout_height="55dp"
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="32dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-
-                    android:layout_row="1"
-                    android:drawableTop="@drawable/camera_layer"
-
-                    android:text="TextView" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_ram" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="17"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="32dp"
-
-                    android:layout_marginTop="32dp"
-                    android:layout_row="1"
-                    android:drawableTop="@drawable/camera_layer"
-
-                    android:text="TextView" />
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="CPU"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/cpu"
+                    app:layout_constraintStart_toStartOf="@+id/cpu"
+                    app:layout_constraintTop_toBottomOf="@+id/cpu" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-
-                    android:layout_row="0"
-                    android:drawableTop="@drawable/camera_layer"
-
-                    android:text="TextView" />
-            </GridLayout>
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="RAM"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/ram"
+                    app:layout_constraintStart_toStartOf="@+id/ram"
+                    app:layout_constraintTop_toBottomOf="@+id/ram" />
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout"
@@ -193,6 +184,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/startImg" />
 
             </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="368dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                android:elevation="6dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressText2" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

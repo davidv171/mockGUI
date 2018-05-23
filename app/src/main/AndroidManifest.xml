@@ -24,6 +24,7 @@
             android:name=".Apps"
             android:label="@string/title_activity_apps"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,6 +33,16 @@
         <activity
             android:name=".Storage"
             android:label="@string/title_activity_storage"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="davidv7.avastgui.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Cpu"
+            android:label="@string/title_activity_cpu"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

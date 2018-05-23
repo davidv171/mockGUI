@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "davidv7.avastgui"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,16 +21,20 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
     implementation 'com.mikhaellopez:circularprogressbar:1.0.0'
     implementation 'br.com.simplepass:loading-button-android:1.12.1'
+    implementation 'com.jjoe64:graphview:4.2.2'
     implementation 'cn.hugeterry.coordinatortablayout:coordinatortablayout:1.2.2'
     implementation 'com.linroid.filtermenu:library:0.2.+@aar'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.google.android.gms:play-services-ads:12.0.0'
-    implementation 'com.android.support:gridlayout-v7:26.1.0'
+    implementation 'com.android.support:gridlayout-v7:27.1.1'
 }

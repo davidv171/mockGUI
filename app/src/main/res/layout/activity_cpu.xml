@@ -5,23 +5,27 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="davidv7.avastgui.Apps">
+    android:fitsSystemWindows="true"
+    tools:context=".Cpu">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp"
-        >
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.NoActionBar"
-            app:titleTextColor="@color/black"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/app_name">
 
-            />
-
+        </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
@@ -32,19 +36,29 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All apps" />
+                android:text="CPU" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Most used" />
+                android:text="CPU1" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Least used" />
+                android:text="CPU2" />
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU3" />
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU4" />
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
@@ -54,18 +68,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <com.linroid.filtermenu.library.FilterMenuLayout
-        android:id="@+id/filter_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:elevation="8dp"
-        app:fm_expandedRadius="128dp"
-        app:fm_collapsedRadius="24dp"
-        app:fm_centerBottom="50dp"
-        app:fm_centerRight="20dp"
-        app:fm_primaryColor="#ff0000"
-        app:fm_primaryDarkColor="#8b0000">
-    </com.linroid.filtermenu.library.FilterMenuLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.red));
         drawer.addDrawerListener(toggle);
         //HIDE the infinite progress bar
         final CircularProgressButton progressBar1 = findViewById(R.id.progressBar);
@@ -78,12 +78,20 @@ public class MainActivity extends AppCompatActivity
         //textview that shows "Complete" or "In progress" when animation is in progress
         final TextView completeText = findViewById(R.id.clean);
         final TextView doingNothingText1 = findViewById(R.id.progressText1);
-
+        final View divider = findViewById(R.id.divider);
         final TextView doingNothingText2 = findViewById(R.id.progressText2);
         doingNothingText1.setVisibility(View.INVISIBLE);
         doingNothingText2.setVisibility(View.INVISIBLE);
         progressBar1.setVisibility(View.INVISIBLE);
         progressBar2.setVisibility(View.INVISIBLE);
+        ImageView cpu = findViewById(R.id.cpu);
+        cpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Cpu.class);
+                startActivity(intent);
+            }
+        });
 
 
         startB.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +124,7 @@ public class MainActivity extends AppCompatActivity
                         doingNothingText2.setVisibility(View.VISIBLE);
                         progressBar1.setVisibility(View.VISIBLE);
                         progressBar2.setVisibility(View.VISIBLE);
+                        divider.setVisibility(View.VISIBLE);
                         //Fade in animation for doingNothingText1/2 and progressBar1/2
 
                         Animation startAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
@@ -226,6 +235,27 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_storage) {
             Intent intent = new Intent(MainActivity.this,Storage.class);
             startActivity(intent);
+        }
+        if(id == R.id.nav_send){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.setType("message/rfc822");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Bug report");
+            Intent mailer = Intent.createChooser(intent, null);
+            startActivity(mailer);
+        }
+        if(id == R.id.nav_share){
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        }
+        if(id == R.id.nav_download){
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, 42069);
         }
 
         DrawerLayout drawer =findViewById(R.id.drawer_layout);

@@ -1,34 +1,42 @@
 package davidv7.avastgui;
 
+import android.app.Activity;
 import android.app.SearchManager;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.linroid.filtermenu.library.FilterMenu;
-import com.linroid.filtermenu.library.FilterMenuLayout;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.List;
+import java.util.Random;
 
-public class Apps extends AppCompatActivity {
+public class Cpu extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -48,7 +56,7 @@ public class Apps extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apps);
+        setContentView(R.layout.activity_cpu);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
@@ -57,7 +65,7 @@ public class Apps extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new Cpu.SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
@@ -68,32 +76,13 @@ public class Apps extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-
-        FilterMenuLayout layout = (FilterMenuLayout) findViewById(R.id.filter_menu);
-        FilterMenu menu = new FilterMenu.Builder(this).addItem(R.drawable.ic_alphabet).addItem(R.drawable.ic_reverse_alphabet)
-        //.inflate(R.menu....)//inflate  menu resource
-    .attach(layout)
-                .withListener(new FilterMenu.OnMenuChangeListener() {
-                    @Override
-                    public void onMenuItemClick(View view, int position) {
-                    }
-                    @Override
-                    public void onMenuCollapse() {
-                    }
-                    @Override
-                    public void onMenuExpand() {
-                    }
-                })
-                .build();
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_apps, menu);
+        getMenuInflater().inflate(R.menu.menu_cpu, menu);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -127,10 +116,8 @@ public class Apps extends AppCompatActivity {
             //change color of action bar to light blue
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setBackgroundColor(Color.parseColor("#ff0000"));
-            TransitionManager.beginDelayedTransition((ViewGroup) Apps.this.findViewById(R.id.toolbar));
+            TransitionManager.beginDelayedTransition((ViewGroup) Cpu.this.findViewById(R.id.toolbar));
             MenuItemCompat.expandActionView(item);
-
-            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -140,6 +127,7 @@ public class Apps extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -164,13 +152,60 @@ public class Apps extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_apps2, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            //TODO: Make a recycler view with apps, or hardcode a few
+            View rootView = inflater.inflate(R.layout.fragment_cpu, container, false);
+            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            final GraphView graph = rootView.findViewById(R.id.graph);
+            graph.setTitle("CPU usage %");
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+                //TODO: RANDOMIZE INITIAL POINTS FOR EACH SECTION SEPARATEDLY
+                case 1:
+                    break;
+            }
+            final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
 
+
+                new DataPoint(0, 15),
+                    new DataPoint(1, 14),
+                    new DataPoint(2, 14),
+                    new DataPoint(3, 14),
+                    new DataPoint(4, 14),
+                    new DataPoint(5, 14),
+                    new DataPoint(6, 14),
+                    new DataPoint(7, 1)
+
+
+            });
+            graph.addSeries(series);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    int randN = getRandom();
+                    series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 9000);
+                    graph.addSeries(series);
+
+                    System.out.println("DODAN " + randN);
+                    if (series.getHighestValueX() == 8999) {
+                        //TODO: end thread
+                    }
+                    handler.postDelayed(this, 6000);
+                }
+            }, 5000);
             return rootView;
         }
+        private int getRandom() {
+            int min = 15;
+            int max = 22;
+
+            Random r = new Random();
+            int i1 = r.nextInt(max - min + 1) + min;
+            return i1;
+        }
+
+
     }
 
     /**
@@ -187,13 +222,14 @@ public class Apps extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            System.out.println("HERE" + position);
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 5;
         }
     }
 }

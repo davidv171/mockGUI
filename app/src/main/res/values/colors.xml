@@ -9,4 +9,6 @@
     <color name="complete">#32CD32</color>
     <color name="tabsScrollColor">#8a140e</color>
     <color name="white">#FFFF</color>
+    <color name="lightpink">#ffb6c1</color>
+    <color name="orange">#ffa500</color>
 </resources>
