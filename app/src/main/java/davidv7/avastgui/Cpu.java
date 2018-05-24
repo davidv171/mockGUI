@@ -159,7 +159,9 @@ public class Cpu extends AppCompatActivity {
             graph.setTitle("CPU usage %");
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 //TODO: RANDOMIZE INITIAL POINTS FOR EACH SECTION SEPARATEDLY
-                case 1:
+                case 2:
+                    rootView = inflater.inflate(R.layout.cpu_tab,container,false);
+
                     break;
             }
             final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
@@ -184,16 +186,18 @@ public class Cpu extends AppCompatActivity {
                 public void run() {
                     //Do something after 100ms
                     int randN = getRandom();
-                    series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 9000);
+                    series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 100);
                     graph.addSeries(series);
 
                     System.out.println("DODAN " + randN);
-                    if (series.getHighestValueX() == 8999) {
-                        //TODO: end thread
+                    if (series.getHighestValueX() == 100) {
+                        //TODO: restart data
+                        System.out.println("END");
+                        graph.removeAllSeries();
                     }
-                    handler.postDelayed(this, 6000);
+                    handler.postDelayed(this, 5000);
                 }
-            }, 5000);
+            }, 10000);
             return rootView;
         }
         private int getRandom() {
@@ -229,7 +233,7 @@ public class Cpu extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 5;
+            return 2;
         }
     }
 }

@@ -30,15 +30,18 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +88,14 @@ public class MainActivity extends AppCompatActivity
         progressBar1.setVisibility(View.INVISIBLE);
         progressBar2.setVisibility(View.INVISIBLE);
         ImageView cpu = findViewById(R.id.cpu);
+        ImageView ram = findViewById(R.id.ram);
+        ram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Ram.class);
+                startActivity(intent);
+            }
+        });
         cpu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +103,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
+        final ProgressBar progressBar = findViewById(R.id.progressBar3);
+        progressBar.setProgress(80,true);
 
         startB.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -134,6 +146,7 @@ public class MainActivity extends AppCompatActivity
                         progressBar2.startAnimation(startAnimation);
 
 
+
                     }
 
                     @Override
@@ -147,6 +160,9 @@ public class MainActivity extends AppCompatActivity
                         startB.setImageDrawable(getResources().getDrawable(R.drawable.refresh));
                         //TODO: Change Drawable gradually
                         scaleDown.start();
+                        progressBar.setProgress(100);
+                        TextView tt = findViewById(R.id.textView11);
+                        tt.setText("100%");
 
                     }
 

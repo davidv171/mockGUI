@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -43,10 +44,13 @@ public class Storage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setTitle("Storage");
 
-        toolbar.setTitleTextColor(getResources().getColor(R.color.black));
-        toolbar.showOverflowMenu();
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.red));
+        CollapsingToolbarLayout ctl = findViewById(R.id.toolbar_layout);
+        ctl.setTitleEnabled(false);
+        toolbar.setTitle("Storage");
         setSupportActionBar(toolbar);
         //pie chart logic, hardcoded values that are then randomized when clicking the fAB
         final PieChart pieChart = findViewById(R.id.pieChart);

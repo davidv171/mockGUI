@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -51,10 +52,14 @@ public class Apps extends AppCompatActivity {
         setContentView(R.layout.activity_apps);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -70,7 +75,7 @@ public class Apps extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
-        FilterMenuLayout layout = (FilterMenuLayout) findViewById(R.id.filter_menu);
+        FilterMenuLayout layout =  findViewById(R.id.filter_menu);
         FilterMenu menu = new FilterMenu.Builder(this).addItem(R.drawable.ic_alphabet).addItem(R.drawable.ic_reverse_alphabet)
         //.inflate(R.menu....)//inflate  menu resource
     .attach(layout)
@@ -167,7 +172,6 @@ public class Apps extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_apps2, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            //TODO: Make a recycler view with apps, or hardcode a few
 
             return rootView;
         }

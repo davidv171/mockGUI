@@ -17,6 +17,7 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
@@ -25,13 +26,14 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
+
                 android:padding="0dp"
                 android:paddingBottom="0dp"
-
                 android:paddingEnd="0dp"
                 android:paddingTop="0dp"
                 app:popupTheme="@style/AppTheme.NoActionBar"
-                app:titleTextColor="@color/black" />
+
+               />
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -72,9 +74,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="20dip"
+                    android:layout_marginBottom="25dip"
 
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="25dp"
                     android:padding="12dip"
                     android:text="9.52 GB of internal storage used"
 
@@ -88,7 +90,7 @@
 
                     android:id="@+id/pieChart"
                     android:layout_width="match_parent"
-                    android:layout_height="335dp"
+                    android:layout_height="307dp"
                     android:layout_marginTop="120dp" />
 
             </FrameLayout>
@@ -98,15 +100,18 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_storage" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_storage" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
+        android:layout_marginTop="8dp"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="right|bottom"
         app:srcCompat="@drawable/ic_refresh_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

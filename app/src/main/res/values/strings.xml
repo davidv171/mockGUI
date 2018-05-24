@@ -15,6 +15,15 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="title_activity_storage">Storage</string>
+    <string name="cpu_info">CPU cluster with Cortex-A57 is Quad-core\n
+
+        - Adreno 430 GPU with support for Vulkan \n
+
+        - 14-bit dual-ISP up to 55 MP\n\n
+
+        - H.264, H.265 UHD/30fps \n\n
+
+        - 4K main display support </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -108,4 +117,5 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_cpu">Cpu</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_ram">Ram</string>
 </resources>
