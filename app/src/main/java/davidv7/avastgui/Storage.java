@@ -45,6 +45,7 @@ public class Storage extends AppCompatActivity {
         setContentView(R.layout.activity_storage);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Storage");
+        toolbar.setBackgroundColor(Color.TRANSPARENT);
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));

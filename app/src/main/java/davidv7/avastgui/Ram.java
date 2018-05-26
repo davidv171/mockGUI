@@ -3,6 +3,7 @@ package davidv7.avastgui;
 import android.app.SearchManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -16,6 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.Random;
+
 public class Ram extends AppCompatActivity {
 
     @Override
@@ -23,10 +31,55 @@ public class Ram extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ram);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(Color.TRANSPARENT);
+
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final GraphView graphView = findViewById(R.id.graphRAM);
+        graphView.setTitle("% RAM Usage");
+        GridLabelRenderer gridLabelRenderer = new GridLabelRenderer(graphView);
+        gridLabelRenderer.setHorizontalAxisTitle("Time");
+        gridLabelRenderer.setVerticalAxisTitle("% RAM Used");
+        graphView.setTitleTextSize(48);
+        final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+
+
+                new DataPoint(0, 15),
+                new DataPoint(1, 14),
+                new DataPoint(2, 14),
+                new DataPoint(3, 14),
+                new DataPoint(4, 14),
+                new DataPoint(5, 14),
+                new DataPoint(6, 14),
+                new DataPoint(7, 1)
+
+
+        });
+        graphView.addSeries(series);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                int min = 15;
+                int max = 22;
+
+                Random r = new Random();
+                int randN = r.nextInt(max - min + 1) + min;
+                series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 100);
+                graphView.addSeries(series);
+
+                System.out.println("DODAN " + randN);
+                if (series.getHighestValueX() == 100) {
+                    //TODO: restart data
+                    System.out.println("END");
+                    graphView.removeAllSeries();
+                }
+                handler.postDelayed(this, 5000);
+            }
+        }, 10000);
 
     }
     @Override
@@ -65,7 +118,7 @@ public class Ram extends AppCompatActivity {
         if (id == R.id.action_search) {
             //change color of action bar to light blue
             Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setBackgroundColor(Color.parseColor("#ff0000"));
+            toolbar.setBackgroundColor(getResources().getColor(R.color.red));
             TransitionManager.beginDelayedTransition((ViewGroup) Ram.this.findViewById(R.id.toolbar));
             MenuItemCompat.expandActionView(item);
         }

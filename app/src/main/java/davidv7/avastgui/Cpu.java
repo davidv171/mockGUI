@@ -61,6 +61,8 @@ public class Cpu extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setBackgroundColor(Color.TRANSPARENT);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -184,7 +186,6 @@ public class Cpu extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //Do something after 100ms
                     int randN = getRandom();
                     series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 100);
                     graph.addSeries(series);
