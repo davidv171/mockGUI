@@ -40,6 +40,8 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.MyViewHo
         AppList app = appList.get(position);
         holder.title.setText(app.getAppName());
         holder.icon.setImageDrawable(app.getAppIcon());
+        //TODO: Open the app you clicked on
+
 
     }
 
