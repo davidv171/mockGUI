@@ -19,6 +19,7 @@ import android.widget.EditText;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -35,6 +36,14 @@ public class Ram extends AppCompatActivity {
 
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        //When the Back button on the toolbar is clicked, finish the activity to avoid processing in the background
+        //Every activity with this button should have this
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final GraphView graphView = findViewById(R.id.graphRAM);
@@ -43,6 +52,8 @@ public class Ram extends AppCompatActivity {
         gridLabelRenderer.setHorizontalAxisTitle("Time");
         gridLabelRenderer.setVerticalAxisTitle("% RAM Used");
         graphView.setTitleTextSize(48);
+        Viewport vp = graphView.getViewport();
+
         final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
 
 
@@ -53,7 +64,15 @@ public class Ram extends AppCompatActivity {
                 new DataPoint(4, 14),
                 new DataPoint(5, 14),
                 new DataPoint(6, 14),
-                new DataPoint(7, 1)
+                new DataPoint(7, 1),
+                new DataPoint(8, 15),
+                new DataPoint(9, 14),
+                new DataPoint(10, 11),
+                new DataPoint(11, 12),
+                new DataPoint(12, 11),
+                new DataPoint(13, 14),
+                new DataPoint(14, 14),
+                new DataPoint(15, 1)
 
 
         });
@@ -68,18 +87,17 @@ public class Ram extends AppCompatActivity {
 
                 Random r = new Random();
                 int randN = r.nextInt(max - min + 1) + min;
-                series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 100);
+                series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), false, 100);
                 graphView.addSeries(series);
-
                 System.out.println("DODAN " + randN);
-                if (series.getHighestValueX() == 100) {
+                if (series.getHighestValueX() == 30) {
                     //TODO: restart data
                     System.out.println("END");
                     graphView.removeAllSeries();
                 }
-                handler.postDelayed(this, 5000);
+                handler.postDelayed(this, 1000);
             }
-        }, 10000);
+        }, 2000);
 
     }
     @Override

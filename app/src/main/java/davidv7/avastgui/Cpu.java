@@ -62,7 +62,14 @@ public class Cpu extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setBackgroundColor(Color.TRANSPARENT);
-
+        //When the Back button on the toolbar is clicked, finish the activity to avoid processing in the background
+        //Every activity with this button should have this
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -187,7 +194,8 @@ public class Cpu extends AppCompatActivity {
                 @Override
                 public void run() {
                     int randN = getRandom();
-                    series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), true, 100);
+                    //Scroll to end does not work unless you manually set X bounds
+                    series.appendData(new DataPoint(series.getHighestValueX() + 1, randN), false, 100);
                     graph.addSeries(series);
 
                     System.out.println("DODAN " + randN);
@@ -196,9 +204,9 @@ public class Cpu extends AppCompatActivity {
                         System.out.println("END");
                         graph.removeAllSeries();
                     }
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 1000);
                 }
-            }, 10000);
+            }, 2000);
             return rootView;
         }
         private int getRandom() {

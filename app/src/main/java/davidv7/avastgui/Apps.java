@@ -77,8 +77,14 @@ public class Apps extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
-
-
+        //When the Back button on the toolbar is clicked, finish the activity to avoid processing in the background
+        //Every activity with this button should have this
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -192,7 +198,7 @@ public class Apps extends AppCompatActivity {
             rv.addItemDecoration(new DividerItemDecoration(context,
                     DividerItemDecoration.VERTICAL));
             appList.clear();
-
+            //TODO: Fix app crashing while it's still loading up apps
             if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
                 final Handler handler = new Handler();
                 //last index, used to get the last iterator inside the handler
@@ -219,8 +225,14 @@ public class Apps extends AppCompatActivity {
                               info = mApps.get(i);
                           }
                           catch(IndexOutOfBoundsException e){
-                              Toast.makeText(getActivity().getApplicationContext(),"Loading apps complete", Toast.LENGTH_SHORT);
-
+                              //If you leave the activity, while the thread is still running, the Toast cannot show, because
+                              //context is NULL
+                              try {
+                                  Toast.makeText(getActivity().getApplicationContext(), "Loading apps complete", Toast.LENGTH_SHORT);
+                              }
+                              catch(NullPointerException npe){
+                                  System.out.println("cancelled");
+                              }
                               handler.removeCallbacks(this);
                               break;
                           }

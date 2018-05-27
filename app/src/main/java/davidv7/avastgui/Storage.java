@@ -49,6 +49,14 @@ public class Storage extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setTitleTextColor(getResources().getColor(R.color.red));
+        //When the Back button on the toolbar is clicked, finish the activity to avoid processing in the background
+        //Every activity with this button should have this
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         CollapsingToolbarLayout ctl = findViewById(R.id.toolbar_layout);
         ctl.setTitleEnabled(false);
         toolbar.setTitle("Storage");
